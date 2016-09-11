@@ -1,6 +1,16 @@
 # CSCE 689
 ## Assignment 0
-
+# Instructions to Compile from source and run
+## PART 3
+```bash
+cd CSCE-689/csce689-a0/java
+javac JavaParserTest.java && javac ModifyIfListner.java && java JavaParserTest Test.java
+```
+## PART 2
+```bash
+cd CSCE-689/csce689-a0/java
+javac JavaParserTest.java && java JavaParserTest Test.java
+```
 #Introduction
 ##Part 0: Getting Started
 Installing ANTLR
