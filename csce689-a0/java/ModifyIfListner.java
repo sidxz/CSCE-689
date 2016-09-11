@@ -22,7 +22,7 @@ public class ModifyIfListner extends JavaBaseListener {
         String child = ctx.getChild(1).getText().replace("(", "").replace(")", "");
           if(variables.contains(child) && child.length() > 3) {
 
-            String field = "\n\t{ \n\tSystem.out.println(\""+child+" "+ctx.getStart().getLine()+"\");\n";
+            String field = "  { \n\t\t\t\tSystem.out.println(\""+child+" "+ctx.getStart().getLine()+"\");\n\t\t\t\t\b";
             int ix = ctx.start.getTokenIndex();
             while(!(rewriter.getTokenStream().get(ix).getText().equals(")"))) {
             //System.out.println("at "+ix+" "+rewriter.getTokenStream().get(ix).getText());
