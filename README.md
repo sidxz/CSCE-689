@@ -2,11 +2,15 @@
 ## Assignment 0
 # Instructions to Compile from source and run
 ## PART 3
+Download and untar part3 from Release csce689-a0-PART3
+https://github.com/sidxz/CSCE-689/releases/tag/csce689-a0-PART3
 ```bash
 cd CSCE-689/csce689-a0/java
 javac JavaParserTest.java && javac ModifyIfListner.java && java JavaParserTest Test.java
 ```
 ## PART 2
+Download and untar part2 from Release csce689-a0-PART2
+https://github.com/sidxz/CSCE-689/releases/tag/csce689-a0-PART2
 ```bash
 cd CSCE-689/csce689-a0/java
 javac JavaParserTest.java && java JavaParserTest Test.java
