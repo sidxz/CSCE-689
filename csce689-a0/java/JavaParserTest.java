@@ -1,16 +1,19 @@
+
+/* PART 2 */
+
 import java.io.IOException;
 import java.util.*;
-
-
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
+import org.antlr.v4.runtime.TokenStreamRewriter;
 
 public class JavaParserTest extends JavaBaseListener{
 
 	static List<String> variables;
+	TokenStreamRewriter rewriter;
 
 	public static void main(String[] args) throws IOException {
 		if(args.length<1)
@@ -29,9 +32,13 @@ public class JavaParserTest extends JavaBaseListener{
     	ParseTreeWalker walker = new ParseTreeWalker(); // create standard walker
     	JavaParserTest listener = new JavaParserTest(); // create a parse tree listener
 
-    	variables = new ArrayList<>();
+    	//ModifyIfListner extractor = new ModifyIfListner(tokens);
+		variables = new ArrayList<>();
     	
     	walker.walk(listener, tree); // traverse parse tree with listener
+    	//walker.walk(extractor, tree); // traverse parse tree with listener
+		//System.out.println(extractor.rewriter.getText());
+
     }
 
 
@@ -40,28 +47,27 @@ public class JavaParserTest extends JavaBaseListener{
 	 */
 	@Override
 	public void enterStatement(JavaParser.StatementContext ctx){
-		//System.out.println("enterStatement");
-
+		/*
+		Filter all statements starting with if
+		*/
+		
 		if(ctx.getStart().getText().equals("if")) {
-    	//first token is 'if'
-			
+    		/*
+    		Check if the if statement is followed by a variable, and length of variable is greater than 3
+    		*/
 			String child = ctx.getChild(1).getText().replace("(", "").replace(")", "");
 			if(variables.contains(child) && child.length() > 3) {
 				System.out.println(child + " " +ctx.getStart().getLine());
 			}
 
-			//System.out.println("getRuleCOntext() -> "+ctx.getRuleContext().getText());
-			//System.out.println("getRuleCOntext() -> "+ctx.getCause().getText());
-			/*if(ctx.getChild(1) instanceof IfStmtContext) {
-				System.out.println("This");
-			}*/
 		}	
 	}
+
+	/*
+	Generate a list of all the variables
+	*/
 	 @Override
 	public void enterVariableDeclarator(JavaParser.VariableDeclaratorContext ctx) {
-		//variables.add('('+ctx.variableDeclaratorId().getText()+')');
 		variables.add(ctx.variableDeclaratorId().getText());
-
-               // System.out.println("Variable ---> "+ctx.variableDeclaratorId().getText());
             }
 }
