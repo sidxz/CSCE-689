@@ -29,6 +29,8 @@ public class ModifyIfListner extends JavaBaseListener {
             ix++;
             }
             rewriter.insertAfter(rewriter.getTokenStream().get(ix), field);
+            rewriter.insertAfter(ctx.getStop(), "\n\t\t\t} NJECTED");
+
 
 
               System.out.println(child + " " +ctx.getStart().getLine());
